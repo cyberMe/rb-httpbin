@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20151224 14:50:22.197" generator="Robot 2.9.2 (Python 2.7.8 on linux2)">
+<suite source="/home/prokofev/develop/peterservice-py/rf-hand/test-suite/httpbin.robot" id="s1" name="Httpbin">
+<test id="s1-t1" name="auth">
+<kw type="for" name="${user} | ${password} IN [ user | password | user1 | a2 ]">
+<kw type="foritem" name="${user} = user, ${password} = password">
+<kw name="Test Auth" library="HttpBin">
+<doc>check httpbin.org basic auth</doc>
+<arguments>
+<arg>${user}</arg>
+<arg>${password}</arg>
+</arguments>
+<assign>
+<var>${var}</var>
+</assign>
+<msg timestamp="20151224 14:50:22.589" level="INFO">${var} = Result(code=200, answer='OK')</msg>
+<status status="PASS" endtime="20151224 14:50:22.589" starttime="20151224 14:50:22.235"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${var.code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20151224 14:50:22.590" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20151224 14:50:22.590" starttime="20151224 14:50:22.589"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${var.answer}</arg>
+<arg>OK</arg>
+</arguments>
+<msg timestamp="20151224 14:50:22.591" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20151224 14:50:22.591" starttime="20151224 14:50:22.590"></status>
+</kw>
+<status status="PASS" endtime="20151224 14:50:22.591" starttime="20151224 14:50:22.235"></status>
+</kw>
+<kw type="foritem" name="${user} = user1, ${password} = a2">
+<kw name="Test Auth" library="HttpBin">
+<doc>check httpbin.org basic auth</doc>
+<arguments>
+<arg>${user}</arg>
+<arg>${password}</arg>
+</arguments>
+<assign>
+<var>${var}</var>
+</assign>
+<msg timestamp="20151224 14:50:22.917" level="INFO">${var} = Result(code=200, answer='OK')</msg>
+<status status="PASS" endtime="20151224 14:50:22.917" starttime="20151224 14:50:22.591"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${var.code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20151224 14:50:22.918" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20151224 14:50:22.918" starttime="20151224 14:50:22.917"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${var.answer}</arg>
+<arg>OK</arg>
+</arguments>
+<msg timestamp="20151224 14:50:22.919" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20151224 14:50:22.919" starttime="20151224 14:50:22.918"></status>
+</kw>
+<status status="PASS" endtime="20151224 14:50:22.919" starttime="20151224 14:50:22.591"></status>
+</kw>
+<status status="PASS" endtime="20151224 14:50:22.919" starttime="20151224 14:50:22.235"></status>
+</kw>
+<doc>Test auth method</doc>
+<status status="PASS" endtime="20151224 14:50:22.919" critical="yes" starttime="20151224 14:50:22.234"></status>
+</test>
+<test id="s1-t2" name="get">
+<kw name="Test Get" library="HttpBin">
+<doc>check get method</doc>
+<arguments>
+<arg>Host</arg>
+</arguments>
+<assign>
+<var>${var}</var>
+</assign>
+<msg timestamp="20151224 14:50:23.247" level="INFO">${var} = Result(code=200, answer=u'httpbin.org')</msg>
+<status status="PASS" endtime="20151224 14:50:23.247" starttime="20151224 14:50:22.920"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${var.code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20151224 14:50:23.248" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20151224 14:50:23.248" starttime="20151224 14:50:23.248"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${var.answer}</arg>
+<arg>httpbin.org</arg>
+</arguments>
+<status status="PASS" endtime="20151224 14:50:23.249" starttime="20151224 14:50:23.249"></status>
+</kw>
+<doc>Test get method</doc>
+<status status="PASS" endtime="20151224 14:50:23.249" critical="yes" starttime="20151224 14:50:22.919"></status>
+</test>
+<test id="s1-t3" name="stream">
+<kw name="Test Stream" library="HttpBin">
+<doc>Check stream method</doc>
+<arguments>
+<arg>20</arg>
+</arguments>
+<assign>
+<var>${var}</var>
+</assign>
+<msg timestamp="20151224 14:50:23.586" level="INFO">${var} = Result(code=200, answer=20)</msg>
+<status status="PASS" endtime="20151224 14:50:23.586" starttime="20151224 14:50:23.250"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${var.code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20151224 14:50:23.587" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20151224 14:50:23.588" starttime="20151224 14:50:23.587"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${var.answer}</arg>
+<arg>20</arg>
+</arguments>
+<msg timestamp="20151224 14:50:23.589" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20151224 14:50:23.589" starttime="20151224 14:50:23.588"></status>
+</kw>
+<doc>Test stream method</doc>
+<status status="PASS" endtime="20151224 14:50:23.589" critical="yes" starttime="20151224 14:50:23.250"></status>
+</test>
+<doc>Tests for httpbin.org</doc>
+<status status="PASS" endtime="20151224 14:50:23.590" starttime="20151224 14:50:22.199"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="3">Critical Tests</stat>
+<stat fail="0" pass="3">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Httpbin" pass="3">Httpbin</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
