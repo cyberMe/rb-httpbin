@@ -1,4 +1,7 @@
 from robot.api.deco import keyword
+from collections import namedtuple
+from base64 import b64encode
+from json import loads
 from httplib import HTTPConnection
 
 
@@ -7,7 +10,6 @@ class HttpBin(object):
     Robot framework test library for httpbin.org
     """
     def __init__(self):
-        from collections import namedtuple
         self.result = namedtuple("Result", ['code', 'answer'])
 
     @keyword('Test Auth')
@@ -20,7 +22,6 @@ class HttpBin(object):
         """
         con = HTTPConnection("httpbin.org")
         path = "/basic-auth/{}/{}".format(str(user), str(password))
-        from base64 import b64encode
         basic_auth = "Basic {}".format(b64encode(user + ":" + password))
         con.request("GET", path, None, {"Authorization": basic_auth})
         response = con.getresponse()
@@ -41,7 +42,6 @@ class HttpBin(object):
         answer = ''
         if response.length > 0:
             data = response.read()
-            from json import loads
             parsed = loads(data.__str__())
             con.close()
             answer = parsed["headers"][str(header)]
@@ -59,8 +59,11 @@ class HttpBin(object):
         con = HTTPConnection("httpbin.org")
         con.request("GET", "/stream/" + str(count))
         response = con.getresponse()
-        data = response.read()
-        result = self.result(response.status, len(data.splitlines()))
+        splited = 0
+        if response.length > 0:
+            data = response.read()
+            splited = len(data.splitlines())
+        result = self.result(response.status, splited)
         con.close()
         return result
 
